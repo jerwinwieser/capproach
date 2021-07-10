@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<a href="{% url 'admin:index' %}">Admin</a>
+<a href="{% url 'contact_list' %}">List Contact</a>
+<a href="{% url 'contact_create' %}">Create Contact</a>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<ul>
+{% for contact in contact_list %}
+<li>{{ contact.name }}, <a href="{% url 'contact_delete' contact.pk %}">Delete Contact</a>, {{ contact.created_at }}	</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
