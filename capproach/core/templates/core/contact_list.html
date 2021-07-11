@@ -2,10 +2,35 @@
 
 {% block content %}
 
-<ul>
-{% for contact in contact_list %}
-<li>{{ contact.name }}, <a href="{% url 'contact_delete' contact.pk %}">Delete Contact</a>, {{ contact.created_at }}	</li>
-{% endfor %}
-</ul>
+<center>
+	
+<table>
 
+<tr>
+<th>Date Approach</th>
+<th>Name</th>
+<th>Age</th>
+<th>Nationatlity</th>
+<th>Number Close</th>
+<th>Update</th>
+<th>Delete</th>
+</tr>
+
+{% for contact in contact_list %}
+
+<tr>
+<td>{{ contact.date_approach }}</td>
+<td>{{ contact.name }}</td>
+<td>{{ contact.age }}</td>
+<td>{{ contact.nationality }}</td>
+<td>{{ contact.close }}</td>
+<td><a href="{% url 'contact_update' contact.pk %}">Update</a></td>
+<td><a href="{% url 'contact_delete' contact.pk %}">Delete</a></td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</center>
 {% endblock %}

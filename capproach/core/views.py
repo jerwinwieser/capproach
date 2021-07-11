@@ -15,6 +15,13 @@ class ContactCreateView(CreateView):
 	def get_success_url(self):
 		return reverse('contact_list')
 
+class ContactUpdateView(UpdateView):
+	model = Contact
+	fields = '__all__'
+	success_message = 'Success: Contact was updated.'
+	def get_success_url(self):
+		return reverse('contact_list')
+
 class ContactDeleteView(DeleteView):
 	model = Contact
 	success_message = 'Success: Contact was deleted.'

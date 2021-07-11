@@ -6,9 +6,12 @@
 </head>
 <body>
 
-<a href="{% url 'admin:index' %}">Admin</a>
-<a href="{% url 'contact_list' %}">List Contact</a>
-<a href="{% url 'contact_create' %}">Create Contact</a>
+<h1>Capproach</h1>
+
+<ul>
+	<li><a href="{% url 'contact_list' %}">List Contacts</a></li>
+	<li><a href="{% url 'contact_create' %}">Create Contact</a></li>
+</ul>
 
 {% block content %}{% endblock %}
 
