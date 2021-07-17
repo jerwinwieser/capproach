@@ -8,7 +8,16 @@
 
 <h1>Capproach</h1>
 
+{% if user.is_authenticated %}
+<p>user: {{ user.username }}</p>
+<button onclick="location.href='{% url 'account_logout' %}'">Logout</button>
+{% else %}
+<p>user: no user authenticated</p>
+<button onclick="location.href='{% url 'account_login' %}'">Login</button>
+{% endif %}
+
 <ul>
+	<li><a href="{% url 'admin:index' %}">Admin</a></li>
 	<li><a href="{% url 'contact_list' %}">List Contacts</a></li>
 	<li><a href="{% url 'contact_create' %}">Create Contact</a></li>
 </ul>
