@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView, FormView
 from django.views.generic.detail import DetailView
-from django.db.models import Avg, Count, Min, Sum
+from django.db.models import Avg, Count, Min, Sum, IntegerField, Case, When, Value
 from django.db.models.functions import ExtractWeek, ExtractYear, ExtractMonth
 from django.urls import reverse, reverse_lazy
 from core.models import Contact
@@ -32,16 +32,28 @@ class StatisticsListView(ListView):
     	.annotate(week_number=ExtractWeek('date_approach')) \
 		.values('week_number') \
 		.annotate(approach_count=Count('close')) \
-		.annotate(close_count=Sum('close')) \
-		.annotate(date_count=Sum('date')) \
+		.annotate(close_count=Sum(Case(When(close=True, then=1),
+	        default=Value(0),
+	        output_field=IntegerField()
+	    ))) \
+		.annotate(date_count=Sum(Case(When(date=True, then=1),
+	        default=Value(0),
+	        output_field=IntegerField()
+	    ))) \
 		.order_by('-week_number')
 
 		context['summary_day'] = Contact.objects \
 		.filter(created_by=user) \
 		.values('date_approach') \
 		.annotate(approach_count=Count('close')) \
-		.annotate(close_count=Sum('close')) \
-		.annotate(date_count=Sum('date')) \
+		.annotate(close_count=Sum(Case(When(close=True, then=1),
+	        default=Value(0),
+	        output_field=IntegerField()
+	    ))) \
+		.annotate(date_count=Sum(Case(When(date=True, then=1),
+	        default=Value(0),
+	        output_field=IntegerField()
+	    ))) \
 		.order_by('-date_approach')
 
 		return context
@@ -54,7 +66,9 @@ class ContactListView(ListView):
 
 		user = self.request.user
 
-		context['contact_list'] = Contact.objects.filter(created_by=user)
+		context['contact_list'] = Contact.objects \
+		.filter(created_by=user) \
+		.order_by('-date_approach', '-time_approach')
 
 		return context
 
