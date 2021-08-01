@@ -3,13 +3,25 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
+
+	<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	  text-align: center;
+	  vertical-align: middle;
+	}
+	</style>
+
 </head>
 <body>
 
-<h1>Capproach</h1>
+<center>
+	<h1>Capproach</h1>
+</center>
 
 {% if user.is_authenticated %}
-<p>user: {{ user.username }}</p>
+<p>user: {{ user.email }}</p>
 <button onclick="location.href='{% url 'account_logout' %}'">Logout</button>
 {% else %}
 <p>user: no user authenticated</p>
@@ -17,10 +29,13 @@
 {% endif %}
 
 <ul>
-	<li><a href="{% url 'admin:index' %}">Admin</a></li>
-	<li><a href="{% url 'contact_list' %}">List Contacts</a></li>
-	<li><a href="{% url 'contact_create' %}">Create Contact</a></li>
+	<li><a href="{% url 'contact_list' %}">List Approaches</a></li>
+	<li><a href="{% url 'statistics_list' %}">Summary Statistics</a></li>
 </ul>
+
+<center>
+	<button onclick="location.href='{% url 'contact_create' %}'">Add Approach</button>
+</center>
 
 {% block content %}{% endblock %}
 

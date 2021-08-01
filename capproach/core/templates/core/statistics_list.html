@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<center>
+
+<h2>Summary Week</h2>
+
+<table>
+
+<tr>
+	<th>Week Number</th>
+	<th>Approach Count</th>
+	<th>Close Count</th>
+	<th>Date Count</th>
+</tr>
+
+{% for item in summary_week %}
+
+<tr>
+	<td>{{ item.week_number }}</td>
+	<td>{{ item.approach_count|add:"0" }}</td>
+	<td>{{ item.close_count|add:"0" }}</td>
+	<td>{{ item.date_count|add:"0" }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<h2>Summary Day</h2>
+
+<table>
+
+<tr>
+	<th>Date</th>
+	<th>Approach Count</th>
+	<th>Close Count</th>
+	<th>Date Count</th>
+</tr>
+
+{% for item in summary_day %}
+
+<tr>
+	<td>{{ item.date_approach }}</td>
+	<td>{{ item.approach_count|add:"0" }}</td>
+	<td>{{ item.close_count|add:"0" }}</td>
+	<td>{{ item.date_count|add:"0" }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</center>
+
+{% endblock %}
