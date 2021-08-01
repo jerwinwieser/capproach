@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+
 
 class Contact(models.Model):
 	AGE_CHOICES = [(i,i) for i in range(15, 50)]
@@ -23,7 +25,7 @@ class Contact(models.Model):
 
 	created_at = models.DateTimeField(editable=False, default=timezone.now)
 	updated_at = models.DateTimeField(editable=False, default=timezone.now)
-	# created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, editable=False)
+	created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, editable=False)
 
 	def __str__(self):
 		return self.name
