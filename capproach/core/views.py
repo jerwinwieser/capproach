@@ -8,8 +8,10 @@ from django.db.models.functions import ExtractWeek, ExtractYear, ExtractMonth
 from django.urls import reverse, reverse_lazy
 from core.models import Contact
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
-
+@method_decorator(login_required, name='dispatch')
 class StatisticsListView(ListView):
 	'''
 	Statistics:
@@ -58,6 +60,7 @@ class StatisticsListView(ListView):
 
 		return context
 
+@method_decorator(login_required, name='dispatch')
 class ContactListView(ListView):
 	model = Contact
 
