@@ -75,6 +75,7 @@ class ContactListView(ListView):
 
 		return context
 
+@method_decorator(login_required, name='dispatch')
 class ContactCreateView(CreateView):
 	model = Contact
 	fields = '__all__'
@@ -87,6 +88,7 @@ class ContactCreateView(CreateView):
 	def get_success_url(self):
 		return reverse('contact_list')
 
+@method_decorator(login_required, name='dispatch')
 class ContactUpdateView(UpdateView):
 	model = Contact
 	fields = '__all__'
@@ -94,6 +96,7 @@ class ContactUpdateView(UpdateView):
 	def get_success_url(self):
 		return reverse('contact_list')
 
+@method_decorator(login_required, name='dispatch')
 class ContactDeleteView(DeleteView):
 	model = Contact
 	success_message = 'Success: Contact was deleted.'
