@@ -32,7 +32,6 @@
 					<th>Reply</th>
 					<th>Date</th>
 					<th>Lay</th>
-					<th>Comments</th>
 					<th>Update</th>
 					<th>Delete</th>
 				</tr>
@@ -48,7 +47,6 @@
 					<td>{{ contact.reply }}</td>
 					<td>{{ contact.date }}</td>
 					<td>{{ contact.lay }}</td>
-					<td>{{ contact.comments }}</td>
 					<td><a href="{% url 'contact_update' contact.pk %}">Update</a></td>
 					<td><a href="{% url 'contact_delete' contact.pk %}">Delete</a></td>
 				</tr>
