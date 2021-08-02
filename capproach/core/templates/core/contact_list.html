@@ -2,6 +2,19 @@
 
 {% block content %}
 
+<!-- 
+	name = models.CharField(max_length=30, blank=False)
+	age = models.IntegerField(blank=True, null=True, choices=AGE_CHOICES, default=22)
+	nationality = models.CharField(max_length=30, blank=True, null=True)
+	duration = models.CharField(max_length=30, choices=DURATION_CHOICES, default='Medium', blank=True, null=True)
+	interaction = models.IntegerField(blank=True, null=True, choices=INTERACTION_CHOICES, default=7)
+	looks = models.IntegerField(blank=True, null=True, choices=LOOKS_CHOICES, default=7)
+	close = models.BooleanField(choices=BOOLEAN_CHOICES, default=1, blank=True)
+	reply = models.BooleanField(choices=BOOLEAN_CHOICES, default=0, blank=True)
+	date = models.BooleanField(choices=BOOLEAN_CHOICES, default=0, blank=True)
+	lay = models.BooleanField(choices=BOOLEAN_CHOICES, default=0, blank=True)
+	comments = models.TextField(blank = True, max_length=300) 
+-->
 
 <main>
 
@@ -11,16 +24,17 @@
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<tr>
-						<th>Date Approach</th>
-						<th>Name</th>
-						<th>Age</th>
-						<th>Nationatlity</th>
-						<th>Number Close</th>
-						<th>Date</th>
-						<th>Update</th>
-						<th>Delete</th>
-					</tr>
+					<th>Date Approach</th>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Nationatlity</th>
+					<th>Close</th>
+					<th>Reply</th>
+					<th>Date</th>
+					<th>Lay</th>
+					<th>Comments</th>
+					<th>Update</th>
+					<th>Delete</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -31,7 +45,10 @@
 					<td>{{ contact.age }}</td>
 					<td>{{ contact.nationality }}</td>
 					<td>{{ contact.close }}</td>
+					<td>{{ contact.reply }}</td>
 					<td>{{ contact.date }}</td>
+					<td>{{ contact.lay }}</td>
+					<td>{{ contact.comments }}</td>
 					<td><a href="{% url 'contact_update' contact.pk %}">Update</a></td>
 					<td><a href="{% url 'contact_delete' contact.pk %}">Delete</a></td>
 				</tr>
