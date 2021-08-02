@@ -2,56 +2,76 @@
 
 {% block content %}
 
-<center>
 
-<h2>Summary Week</h2>
+<main>
 
-<table>
+	<h2 class="display-6 text-center mb-4">Summary per Week</h2>
 
-<tr>
-	<th>Week Number</th>
-	<th>Approach Count</th>
-	<th>Close Count</th>
-	<th>Date Count</th>
-</tr>
+	<div class="table-responsive">
+		<table class="table text-center">
+			<thead>
+				<tr>
+					<th>Week Number</th>
+					<th>Approach Count</th>
+					<th>Close Count</th>
+					<th>Date Count</th>
+				</tr>
+			</thead>
+			<tbody>
 
-{% for item in summary_week %}
+				{% for item in summary_week %}
 
-<tr>
-	<td>{{ item.week_number }}</td>
-	<td>{{ item.approach_count }}</td>
-	<td>{{ item.close_count }}</td>
-	<td>{{ item.date_count }}</td>
-</tr>
+				<tr>
+					<td>{{ item.week_number }}</td>
+					<td>{{ item.approach_count }}</td>
+					<td>{{ item.close_count }}</td>
+					<td>{{ item.date_count }}</td>
+				</tr>
 
-{% endfor %}
+				{% endfor %}
 
-</table>
+			</tbody>
 
-<h2>Summary Day</h2>
+		</table>
+	</div>
+</main>
 
-<table>
 
-<tr>
-	<th>Date</th>
-	<th>Approach Count</th>
-	<th>Close Count</th>
-	<th>Date Count</th>
-</tr>
 
-{% for item in summary_day %}
+<main>
 
-<tr>
-	<td>{{ item.date_approach }}</td>
-	<td>{{ item.approach_count|add:"0" }}</td>
-	<td>{{ item.close_count|add:"0" }}</td>
-	<td>{{ item.date_count|add:"0" }}</td>
-</tr>
+	<h2 class="display-6 text-center mb-4">Summary per Day</h2>
 
-{% endfor %}
+	<div class="table-responsive">
+		<table class="table text-center">
+			<thead>
 
-</table>
+				<tr>
+					<th>Date</th>
+					<th>Approach Count</th>
+					<th>Close Count</th>
+					<th>Date Count</th>
+				</tr>
 
-</center>
+			</thead>
+			<tbody>
+
+				{% for item in summary_day %}
+
+				<tr>
+					<td>{{ item.date_approach }}</td>
+					<td>{{ item.approach_count }}</td>
+					<td>{{ item.close_count }}</td>
+					<td>{{ item.date_count }}</td>
+				</tr>
+
+				{% endfor %}
+
+			</tbody>
+
+		</table>
+	</div>
+</main>
 
 {% endblock %}
+
