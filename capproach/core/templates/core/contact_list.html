@@ -38,7 +38,7 @@
 			</thead>
 			<tbody>
 				{% for contact in contact_list %}
-
+			<!-- 
 				{% if contact.status == 0 %}
 				<tr class="table-active">
 				{% elif contact.status == 1 %}
@@ -49,6 +49,21 @@
 				<tr class="table-warning">
 				{% elif contact.status == 4 %}
 				<tr class="table-success">
+				{% endif %} 
+			-->
+
+				{% if contact.close == 0 and contact.reply == 0 and contact.date == 0 and contact.lay == 0 %}
+				<tr class="table-active">
+				{% elif contact.close == 1 and contact.reply == 0 and contact.date == 0 and contact.lay == 0 %}
+				<tr>
+				{% elif contact.close == 1 and contact.reply == 1 and contact.date == 0 and contact.lay == 0 %}
+				<tr class="table-primary">
+				{% elif contact.close == 1 and contact.reply == 1 and contact.date == 1 and contact.lay == 0 %}
+				<tr class="table-warning">
+				{% elif contact.close == 1 and contact.reply == 1 and contact.date == 1 and contact.lay == 1 %}
+				<tr class="table-success">
+				{% else %}
+				<tr>
 				{% endif %}
 
 					<td>{{ contact.date_approach }}</td>

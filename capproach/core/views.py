@@ -71,8 +71,7 @@ class ContactListView(ListView):
 
 		context['contact_list'] = Contact.objects \
 		.filter(created_by=user) \
-		.order_by('-date_approach', '-time_approach') \
-		.annotate(status=Sum(F('close') + F('reply') + F('date') + F('lay')))
+		.order_by('-date_approach', '-time_approach')
 
 		return context
 
