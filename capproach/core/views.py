@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView, FormView
 from django.views.generic.detail import DetailView
-from django.db.models import Avg, Count, Min, Sum, IntegerField, Case, When, Value
+from django.db.models import Avg, Count, Min, Sum, IntegerField, Case, When, Value, F
 from django.db.models.functions import ExtractWeek, ExtractYear, ExtractMonth
 from django.urls import reverse, reverse_lazy
 from core.models import Contact
@@ -71,7 +71,8 @@ class ContactListView(ListView):
 
 		context['contact_list'] = Contact.objects \
 		.filter(created_by=user) \
-		.order_by('-date_approach', '-time_approach')
+		.order_by('-date_approach', '-time_approach') \
+		.annotate(status=Sum(F('close') + F('reply') + F('date') + F('lay')))
 
 		return context
 

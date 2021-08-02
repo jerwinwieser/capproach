@@ -38,7 +38,19 @@
 			</thead>
 			<tbody>
 				{% for contact in contact_list %}
+
+				{% if contact.status == 0 %}
+				<tr class="table-active">
+				{% elif contact.status == 1 %}
 				<tr>
+				{% elif contact.status == 2 %}
+				<tr class="table-primary">
+				{% elif contact.status == 3 %}
+				<tr class="table-warning">
+				{% elif contact.status == 4 %}
+				<tr class="table-success">
+				{% endif %}
+
 					<td>{{ contact.date_approach }}</td>
 					<td>{{ contact.name }}</td>
 					<td>{{ contact.age }}</td>
