@@ -7,9 +7,12 @@ from django.db.models import Avg, Count, Min, Sum, IntegerField, Case, When, Val
 from django.db.models.functions import ExtractWeek, ExtractYear, ExtractMonth
 from django.urls import reverse, reverse_lazy
 from core.models import Contact
+from core.forms import ContactForm
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalDeleteView, BSModalFormView, BSModalUpdateView
+
 
 @method_decorator(login_required, name='dispatch')
 class StatisticsListView(ListView):
@@ -87,6 +90,7 @@ class ContactListView(ListView):
 class ContactCreateView(CreateView):
 	model = Contact
 	fields = '__all__'
+	form_class = ContactForm
 	success_message = 'Success: Contact was added.'
 
 	def form_valid(self, form):

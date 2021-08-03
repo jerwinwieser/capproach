@@ -46,6 +46,8 @@ INSTALLED_APPS = [
 
     'core',
 
+    'bootstrap_modal_forms',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
