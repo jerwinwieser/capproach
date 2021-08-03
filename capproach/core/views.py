@@ -11,7 +11,7 @@ from core.forms import ContactForm
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from bootstrap_modal_forms.generic import BSModalCreateView, BSModalDeleteView, BSModalFormView, BSModalUpdateView
+from bootstrap_modal_forms.generic import BSModalReadView, BSModalCreateView, BSModalDeleteView, BSModalFormView, BSModalUpdateView
 
 
 @method_decorator(login_required, name='dispatch')
@@ -86,6 +86,11 @@ class ContactListView(ListView):
 		.order_by('-date_approach', '-time_approach')
 
 		return context
+
+@method_decorator(login_required, name='dispatch')
+class ContacReadView(BSModalReadView):
+    model = Contact
+    template_name = 'core/contact_read.html'
 
 @method_decorator(login_required, name='dispatch')
 class ContactCreateView(BSModalCreateView):

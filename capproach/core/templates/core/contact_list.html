@@ -10,6 +10,7 @@
 		<table class="table text-center">
 			<thead>
 				<tr>
+					<th>#</th>
 					<th>Date Approach</th>
 					<th>Name</th>
 					<th>Age</th>
@@ -18,6 +19,7 @@
 					<th>Reply</th>
 					<th>Date</th>
 					<th>Lay</th>
+					<th>Read</th>
 					<th>Update</th>
 					<th>Delete</th>
 				</tr>
@@ -39,6 +41,7 @@
 					<tr>
 					{% endif %}
 
+					<th class="text-center" scope="row">{{ forloop.counter }}</th>
 					<td>{{ contact.date_approach }}</td>
 					<td>{{ contact.name }}</td>
 					<td>{{ contact.age }}</td>
@@ -47,6 +50,9 @@
 					<td>{{ contact.reply }}</td>
 					<td>{{ contact.date }}</td>
 					<td>{{ contact.lay }}</td>
+					<td><button type="button" class="contact-read bs-modal btn btn-sm btn-primary" data-form-url="{% url 'contact_read' contact.pk %}">
+						<span class="fa fa-pencil"></span>
+					</button></td>
 					<td><button type="button" class="contact-update bs-modal btn btn-sm btn-primary" data-form-url="{% url 'contact_update' contact.pk %}">
 						<span class="fa fa-pencil"></span>
 					</button></td>
