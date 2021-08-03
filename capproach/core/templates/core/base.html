@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +11,12 @@
 	
 </head>
 <body>
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content"></div>
+		</div>
+	</div>
 
 	<div class="container py-3">
 
@@ -30,15 +38,12 @@
 
 		</header>
 
-
 		<div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4">
-			<button class="btn btn-primary btn-lg" onclick="location.href='{% url 'contact_create' %}'">Add Approach</button>
+			<button id="contact-create" class="btn btn-primary btn-lg" type="button" name="button">Create Contact</button>
 		</div>
 
 
 		{% block content %}{% endblock %}
-
-
 
 		<footer class="pt-4 my-md-5 pt-md-5 border-top">
 			<div class="row">
@@ -51,8 +56,75 @@
 			</div>
 		</footer>
 
-
 	</div>
+
+	<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'assets/js/popper.min.js' %}"></script>
+	<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+	<!-- You can alternatively load the minified version -->
+	<script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+
+
+	<script type="text/javascript">
+	
+	$(function () {
+		$("#contact-create").modalForm({
+			formURL: "{% url 'contact_create' %}"
+		});
+
+		$(".contact-read").each(function () {
+		        $(this).modalForm({formURL: $(this).data("form-url")});
+		});
+
+	    $(".contact-delete").each(function () {
+	        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
+	    });
+
+		var asyncSuccessMessage = [
+		"<div ",
+		"style='position:fixed;top:0;z-index:10000;width:100%;border-radius:0;' ",
+		"class='alert alert-icon alert-success alert-dismissible fade show mb-0' role='alert'>",
+		"Success: Gym was updated.",
+		"<button type='button' class='close' data-dismiss='alert' aria-label='Close'>",
+		"<span aria-hidden='true'>&times;</span>",
+		"</button>",
+		"</div>",
+		"<script>",
+		"$('.alert').fadeTo(2000, 500).slideUp(500, function () {$('.alert').slideUp(500).remove();});",
+		"<\/script>"
+		].join("");
+
+		function updateContactModalForm() {
+			$(".contact-update").each(function () {
+				$(this).modalForm({
+					formURL: $(this).data("form-url"),
+					asyncUpdate: true,
+					asyncSettings: {
+						closeOnSubmit: false,
+						successMessage: asyncSuccessMessage,
+						dataUrl: "tables/",
+						dataElementId: "#contacts",
+						dataKey: "table",
+						addModalFormFunction: updateContactModalForm
+					}
+				});
+			});
+		}
+		updateContactModalForm();
+
+		// Read and Delete person buttons open modal with id="modal"
+		// The formURL is retrieved from the data of the element
+		$(".bs-modal").each(function () {
+			$(this).modalForm({formURL: $(this).data("form-url")});
+		});
+
+		// Hide message
+		$(".alert").fadeTo(2000, 500).slideUp(500, function () {
+			$(".alert").slideUp(500);
+		});
+	});
+
+	</script>
 
 </body>
 </html>

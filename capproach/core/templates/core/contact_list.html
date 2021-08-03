@@ -47,8 +47,12 @@
 					<td>{{ contact.reply }}</td>
 					<td>{{ contact.date }}</td>
 					<td>{{ contact.lay }}</td>
-					<td><a href="{% url 'contact_update' contact.pk %}">Update</a></td>
-					<td><a href="{% url 'contact_delete' contact.pk %}">Delete</a></td>
+					<td><button type="button" class="contact-update bs-modal btn btn-sm btn-primary" data-form-url="{% url 'contact_update' contact.pk %}">
+						<span class="fa fa-pencil"></span>
+					</button></td>
+					<td><button type="button" class="contact-delete bs-modal btn btn-sm btn-danger" data-form-url="{% url 'contact_delete' contact.pk %}">
+						<span class="fa fa-trash"></span>
+					</button></td>
 				</tr>
 				{% endfor %}
 			</tbody>
@@ -56,6 +60,5 @@
 		</table>
 	</div>
 </main>
-
 
 {% endblock %}

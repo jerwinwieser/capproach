@@ -24,8 +24,8 @@ class StatisticsListView(ListView):
 	- n lays
 	'''
 
-	model = Contact
 	template_name = 'core/statistics_list.html'
+	model = Contact
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
@@ -73,6 +73,7 @@ class StatisticsListView(ListView):
 
 @method_decorator(login_required, name='dispatch')
 class ContactListView(ListView):
+	template_name = 'core/contact_list.html'
 	model = Contact
 
 	def get_context_data(self, **kwargs):
@@ -87,10 +88,10 @@ class ContactListView(ListView):
 		return context
 
 @method_decorator(login_required, name='dispatch')
-class ContactCreateView(CreateView):
-	model = Contact
-	fields = '__all__'
+class ContactCreateView(BSModalCreateView):
+	template_name = 'core/contact_create.html'
 	form_class = ContactForm
+	model = Contact
 	success_message = 'Success: Contact was added.'
 
 	def form_valid(self, form):
@@ -101,16 +102,19 @@ class ContactCreateView(CreateView):
 		return reverse('contact_list')
 
 @method_decorator(login_required, name='dispatch')
-class ContactUpdateView(UpdateView):
+class ContactUpdateView(BSModalUpdateView):
+	template_name = 'core/contact_update.html'
 	model = Contact
-	fields = '__all__'
+	form_class = ContactForm
 	success_message = 'Success: Contact was updated.'
 	def get_success_url(self):
 		return reverse('contact_list')
 
 @method_decorator(login_required, name='dispatch')
-class ContactDeleteView(DeleteView):
+class ContactDeleteView(BSModalDeleteView):
+	template_name = 'core/contact_delete.html'
 	model = Contact
 	success_message = 'Success: Contact was deleted.'
 	def get_success_url(self):
 		return reverse('contact_list')
+		
