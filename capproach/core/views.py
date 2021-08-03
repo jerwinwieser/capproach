@@ -42,6 +42,10 @@ class StatisticsListView(ListView):
 	        default=Value(0),
 	        output_field=IntegerField()
 	    ))) \
+		.annotate(lay_count=Sum(Case(When(lay=True, then=1),
+	        default=Value(0),
+	        output_field=IntegerField()
+	    ))) \
 		.order_by('-week_number')
 
 		context['summary_day'] = Contact.objects \
@@ -53,6 +57,10 @@ class StatisticsListView(ListView):
 	        output_field=IntegerField()
 	    ))) \
 		.annotate(date_count=Sum(Case(When(date=True, then=1),
+	        default=Value(0),
+	        output_field=IntegerField()
+	    ))) \
+		.annotate(lay_count=Sum(Case(When(lay=True, then=1),
 	        default=Value(0),
 	        output_field=IntegerField()
 	    ))) \

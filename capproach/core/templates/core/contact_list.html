@@ -2,20 +2,6 @@
 
 {% block content %}
 
-<!-- 
-	name = models.CharField(max_length=30, blank=False)
-	age = models.IntegerField(blank=True, null=True, choices=AGE_CHOICES, default=22)
-	nationality = models.CharField(max_length=30, blank=True, null=True)
-	duration = models.CharField(max_length=30, choices=DURATION_CHOICES, default='Medium', blank=True, null=True)
-	interaction = models.IntegerField(blank=True, null=True, choices=INTERACTION_CHOICES, default=7)
-	looks = models.IntegerField(blank=True, null=True, choices=LOOKS_CHOICES, default=7)
-	close = models.BooleanField(choices=BOOLEAN_CHOICES, default=1, blank=True)
-	reply = models.BooleanField(choices=BOOLEAN_CHOICES, default=0, blank=True)
-	date = models.BooleanField(choices=BOOLEAN_CHOICES, default=0, blank=True)
-	lay = models.BooleanField(choices=BOOLEAN_CHOICES, default=0, blank=True)
-	comments = models.TextField(blank = True, max_length=300) 
--->
-
 <main>
 
 	<h2 class="display-6 text-center mb-4">Approaches</h2>
@@ -38,33 +24,20 @@
 			</thead>
 			<tbody>
 				{% for contact in contact_list %}
-			<!-- 
-				{% if contact.status == 0 %}
-				<tr class="table-active">
-				{% elif contact.status == 1 %}
-				<tr>
-				{% elif contact.status == 2 %}
-				<tr class="table-primary">
-				{% elif contact.status == 3 %}
-				<tr class="table-warning">
-				{% elif contact.status == 4 %}
-				<tr class="table-success">
-				{% endif %} 
-			-->
-
-				{% if contact.close == 0 and contact.reply == 0 and contact.date == 0 and contact.lay == 0 %}
-				<tr class="table-active">
-				{% elif contact.close == 1 and contact.reply == 0 and contact.date == 0 and contact.lay == 0 %}
-				<tr>
-				{% elif contact.close == 1 and contact.reply == 1 and contact.date == 0 and contact.lay == 0 %}
-				<tr class="table-primary">
-				{% elif contact.close == 1 and contact.reply == 1 and contact.date == 1 and contact.lay == 0 %}
-				<tr class="table-warning">
-				{% elif contact.close == 1 and contact.reply == 1 and contact.date == 1 and contact.lay == 1 %}
-				<tr class="table-success">
-				{% else %}
-				<tr>
-				{% endif %}
+				
+					{% if contact.close == 0 and contact.reply == 0 and contact.date == 0 and contact.lay == 0 %}
+					<tr class="table-active">
+					{% elif contact.close == 1 and contact.reply == 0 and contact.date == 0 and contact.lay == 0 %}
+					<tr>
+					{% elif contact.close == 1 and contact.reply == 1 and contact.date == 0 and contact.lay == 0 %}
+					<tr class="table-primary">
+					{% elif contact.close == 1 and contact.reply == 1 and contact.date == 1 and contact.lay == 0 %}
+					<tr class="table-warning">
+					{% elif contact.close == 1 and contact.reply == 1 and contact.date == 1 and contact.lay == 1 %}
+					<tr class="table-success">
+					{% else %}
+					<tr>
+					{% endif %}
 
 					<td>{{ contact.date_approach }}</td>
 					<td>{{ contact.name }}</td>
