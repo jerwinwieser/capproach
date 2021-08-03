@@ -4,5 +4,5 @@ from core.models import Contact
 
 class ContactForm(BSModalModelForm):
 	class Meta:
-		model=User
-		fields='__all__'
+		model = Contact
+		fields = '__all__'
