@@ -79,7 +79,6 @@ class ContactListView(ListView):
 			userid = self.request.user.id
 		else:
 			userid = User.objects.filter(groups__name__in=['demo']).values_list('id', flat=True).first()
-			context['contact_demo_text'] = 'This is a DEMO page - signup or login to start logging your own approaches'
 
 		context['contact_list'] = Contact.objects \
 		.filter(created_by_id=userid) \
