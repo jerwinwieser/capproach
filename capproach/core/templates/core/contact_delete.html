@@ -16,8 +16,14 @@
 		</p>
 	</div>
 
+    {% if user.is_authenticated %}
 	<div class="modal-footer">
 		<button type="submit" id="delete-btn" class="btn btn-danger">Delete</button>
 	</div>
+    {% else %}
+    <h4 class="display-12 text-center mb-4 text-danger">
+        <a href="{% url 'account_signup' %}">signup</a> or <a href="{% url 'account_login' %}">login</a> to start logging your own approaches.
+    </h4>
+    {% endif %}
 
 </form>

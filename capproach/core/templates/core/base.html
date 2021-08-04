@@ -47,65 +47,69 @@
 			</div>
 		</div>
 
-		{% block content %}{% endblock %}
 
-		{% include "core/_footer.html" %}
-
-	</div>
-
-	<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
-	<script src="{% static 'assets/js/popper.min.js' %}"></script>
-	<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-	<!-- You can alternatively load the minified version -->
-	<script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+		<h4 class="display-12 text-center mb-4 text-danger">{{ contact_demo_text }}</h4>
 
 
-	<script type="text/javascript">
+			{% block content %}{% endblock %}
 
-		$(function () {
-			$("#contact-create").modalForm({
-				formURL: "{% url 'contact_create' %}"
-			});
+			{% include "core/_footer.html" %}
 
-			$(".contact-read").each(function () {
-				$(this).modalForm({formURL: $(this).data("form-url")});
-			});
+		</div>
 
-			$(".contact-delete").each(function () {
-				$(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
-			});
+		<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+		<script src="{% static 'assets/js/popper.min.js' %}"></script>
+		<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+		<!-- You can alternatively load the minified version -->
+		<script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
 
-			var asyncSuccessMessage = [
-			"<div ",
-			"style='position:fixed;top:0;z-index:10000;width:100%;border-radius:0;' ",
-			"class='alert alert-icon alert-success alert-dismissible fade show mb-0' role='alert'>",
-			"Success: Approach was updated.",
-			"<button type='button' class='close' data-dismiss='alert' aria-label='Close'>",
-			"<span aria-hidden='true'>&times;</span>",
-			"</button>",
-			"</div>",
-			"<script>",
-			"$('.alert').fadeTo(2000, 500).slideUp(500, function () {$('.alert').slideUp(500).remove();});",
-			"<\/script>"
-			].join("");
 
-			function updateContactModalForm() {
-				$(".contact-update").each(function () {
-					$(this).modalForm({
-						formURL: $(this).data("form-url"),
-						asyncUpdate: true,
-						asyncSettings: {
-							closeOnSubmit: true,
-							successMessage: asyncSuccessMessage,
-							dataUrl: "tables/",
-							dataElementId: "#contacts",
-							dataKey: "table",
-							addModalFormFunction: updateContactModalForm
-						}
-					});
+		<script type="text/javascript">
+
+			$(function () {
+				$("#contact-create").modalForm({
+					formURL: "{% url 'contact_create' %}"
 				});
-			}
-			updateContactModalForm();
+
+				$(".contact-read").each(function () {
+					$(this).modalForm({formURL: $(this).data("form-url")});
+				});
+
+				$(".contact-delete").each(function () {
+					$(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
+				});
+
+				var asyncSuccessMessage = [
+				"<div ",
+				"style='position:fixed;top:0;z-index:10000;width:100%;border-radius:0;' ",
+				"class='alert alert-icon alert-success alert-dismissible fade show mb-0' role='alert'>",
+				"Success: Approach was updated.",
+				"<button type='button' class='close' data-dismiss='alert' aria-label='Close'>",
+				"<span aria-hidden='true'>&times;</span>",
+				"</button>",
+				"</div>",
+				"<script>",
+				"$('.alert').fadeTo(2000, 500).slideUp(500, function () {$('.alert').slideUp(500).remove();});",
+				"<\/script>"
+				].join("");
+
+				function updateContactModalForm() {
+					$(".contact-update").each(function () {
+						$(this).modalForm({
+							formURL: $(this).data("form-url"),
+							asyncUpdate: true,
+							asyncSettings: {
+								closeOnSubmit: true,
+								successMessage: asyncSuccessMessage,
+								dataUrl: "tables/",
+								dataElementId: "#contacts",
+								dataKey: "table",
+								addModalFormFunction: updateContactModalForm
+							}
+						});
+					});
+				}
+				updateContactModalForm();
 
 		// Read and Delete person buttons open modal with id="modal"
 		// The formURL is retrieved from the data of the element

@@ -22,10 +22,14 @@ class StatisticsListView(ListView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 
-		user = self.request.user
+		userid = self.request.user.id
+
+		if userid == None:
+			userid = 3
+			context['contact_demo_text'] = 'This is a DEMO page - signup or login to start logging your own approaches'
 
 		context['summary_week'] = Contact.objects \
-		.filter(created_by=user) \
+		.filter(created_by_id=userid) \
     	.annotate(week_number=ExtractWeek('date_approach')) \
 		.values('week_number') \
 		.annotate(approach_count=Count('close')) \
@@ -44,7 +48,7 @@ class StatisticsListView(ListView):
 		.order_by('-week_number')
 
 		context['summary_day'] = Contact.objects \
-		.filter(created_by=user) \
+		.filter(created_by_id=userid) \
 		.values('date_approach') \
 		.annotate(approach_count=Count('close')) \
 		.annotate(close_count=Sum(Case(When(close=True, then=1),
@@ -75,23 +79,21 @@ class ContactListView(ListView):
 		userid = self.request.user.id
 
 		if userid == None:
-			context['contact_list'] = Contact.objects \
-			.filter(created_by_id=1) \
-			.order_by('-date_approach', '-time_approach')
+			userid = 3
 			context['contact_demo_text'] = 'This is a DEMO page - signup or login to start logging your own approaches'
-		else:
-			context['contact_list'] = Contact.objects \
-			.filter(created_by_id=userid) \
-			.order_by('-date_approach', '-time_approach')
+		
+		context['contact_list'] = Contact.objects \
+		.filter(created_by_id=userid) \
+		.order_by('-date_approach', '-time_approach')
 
 		return context
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class ContacReadView(BSModalReadView):
     model = Contact
     template_name = 'core/contact_read.html'
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class ContactCreateView(BSModalCreateView):
 	template_name = 'core/contact_create.html'
 	form_class = ContactForm
@@ -103,7 +105,7 @@ class ContactCreateView(BSModalCreateView):
 	def get_success_url(self):
 		return reverse('contact_list')
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class ContactUpdateView(BSModalUpdateView):
 	template_name = 'core/contact_update.html'
 	model = Contact
@@ -111,10 +113,11 @@ class ContactUpdateView(BSModalUpdateView):
 	def get_success_url(self):
 		return reverse('contact_list')
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class ContactDeleteView(BSModalDeleteView):
 	template_name = 'core/contact_delete.html'
 	model = Contact
+	success_message = 'Approach successfully deleted.'
 	def get_success_url(self):
 		return reverse('contact_list')
 		
