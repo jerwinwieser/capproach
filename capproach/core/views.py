@@ -97,8 +97,6 @@ class ContactCreateView(BSModalCreateView):
 	template_name = 'core/contact_create.html'
 	form_class = ContactForm
 	model = Contact
-	success_message = 'Success: Contact was added.'
-
 	def form_valid(self, form):
 		form.instance.created_by = self.request.user
 		return super().form_valid(form)
@@ -111,7 +109,6 @@ class ContactUpdateView(BSModalUpdateView):
 	template_name = 'core/contact_update.html'
 	model = Contact
 	form_class = ContactForm
-	success_message = 'Success: Contact was updated.'
 	def get_success_url(self):
 		return reverse('contact_list')
 
@@ -119,7 +116,6 @@ class ContactUpdateView(BSModalUpdateView):
 class ContactDeleteView(BSModalDeleteView):
 	template_name = 'core/contact_delete.html'
 	model = Contact
-	success_message = 'Success: Contact was deleted.'
 	def get_success_url(self):
 		return reverse('contact_list')
 		
