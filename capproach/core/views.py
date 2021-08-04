@@ -12,7 +12,7 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from bootstrap_modal_forms.generic import BSModalReadView, BSModalCreateView, BSModalDeleteView, BSModalFormView, BSModalUpdateView
-
+from django.contrib.auth.models import User
 
 # @method_decorator(login_required, name='dispatch')
 class StatisticsListView(ListView):
@@ -22,10 +22,10 @@ class StatisticsListView(ListView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 
-		userid = self.request.user.id
-
-		if userid == None:
-			userid = 3
+		if self.request.user.is_authenticated:
+			userid = self.request.user.id
+		else:
+			userid = User.objects.filter(groups__name__in=['demo']).values_list('id', flat=True).first()
 			context['contact_demo_text'] = 'This is a DEMO page - signup or login to start logging your own approaches'
 
 		context['summary_week'] = Contact.objects \
@@ -75,13 +75,12 @@ class ContactListView(ListView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 
-		user = self.request.user
-		userid = self.request.user.id
-
-		if userid == None:
-			userid = 3
+		if self.request.user.is_authenticated:
+			userid = self.request.user.id
+		else:
+			userid = User.objects.filter(groups__name__in=['demo']).values_list('id', flat=True).first()
 			context['contact_demo_text'] = 'This is a DEMO page - signup or login to start logging your own approaches'
-		
+
 		context['contact_list'] = Contact.objects \
 		.filter(created_by_id=userid) \
 		.order_by('-date_approach', '-time_approach')
