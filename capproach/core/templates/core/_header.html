@@ -8,8 +8,10 @@
             <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'contact_list' %}">List Approaches</a>
             <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'statistics_list' %}">Summary Statistics</a>
             {% if user.is_authenticated %}
-            <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'account_logout' %}">Logout</a>
+             <button class="me-1 py-2 btn btn-danger btn-sm" type="submit" onclick="location.href='{% url 'account_logout' %}'" name='mybtn2'>Logout</button>
             {% else %}
+             <button class="me-1 py-2 btn btn-primary btn-sm" type="submit" onclick="location.href='{% url 'account_signup' %}'" name='mybtn2'>Signup</button>
+             <button class="btn btn-primary btn-sm" type="submit" onclick="location.href='{% url 'account_login' %}'" name='mybtn2'>Login</button>
             {% endif %}
         </nav>
     </div>

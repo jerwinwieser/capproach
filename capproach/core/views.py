@@ -14,16 +14,8 @@ from django.utils.decorators import method_decorator
 from bootstrap_modal_forms.generic import BSModalReadView, BSModalCreateView, BSModalDeleteView, BSModalFormView, BSModalUpdateView
 
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class StatisticsListView(ListView):
-	'''
-	Statistics:
-	- n approaches
-	- n closes
-	- n dates
-	- n lays
-	'''
-
 	template_name = 'core/statistics_list.html'
 	model = Contact
 
@@ -71,7 +63,7 @@ class StatisticsListView(ListView):
 
 		return context
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class ContactListView(ListView):
 	template_name = 'core/contact_list.html'
 	model = Contact
@@ -80,10 +72,17 @@ class ContactListView(ListView):
 		context = super().get_context_data(**kwargs)
 
 		user = self.request.user
+		userid = self.request.user.id
 
-		context['contact_list'] = Contact.objects \
-		.filter(created_by=user) \
-		.order_by('-date_approach', '-time_approach')
+		if userid == None:
+			context['contact_list'] = Contact.objects \
+			.filter(created_by_id=1) \
+			.order_by('-date_approach', '-time_approach')
+			context['contact_demo_text'] = 'This is a DEMO page - signup or login to start logging your own approaches'
+		else:
+			context['contact_list'] = Contact.objects \
+			.filter(created_by_id=userid) \
+			.order_by('-date_approach', '-time_approach')
 
 		return context
 
