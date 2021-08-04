@@ -16,9 +16,7 @@
 					<th>Age</th>
 					<th>Nationatlity</th>
 					<th>Close</th>
-					<th>Read</th>
-					<th>Update</th>
-					<th>Delete</th>
+					<th>Read / Update / Delete</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -44,15 +42,17 @@
 					<td>{{ contact.age }}</td>
 					<td>{{ contact.nationality }}</td>
 					<td>{{ contact.close }}</td>
-					<td><button type="button" class="contact-read bs-modal btn btn-sm btn-primary" data-form-url="{% url 'contact_read' contact.pk %}">
-						<span class="fa fa-pencil"></span>
-					</button></td>
-					<td><button type="button" class="contact-update bs-modal btn btn-sm btn-primary" data-form-url="{% url 'contact_update' contact.pk %}">
-						<span class="fa fa-pencil"></span>
-					</button></td>
-					<td><button type="button" class="contact-delete bs-modal btn btn-sm btn-danger" data-form-url="{% url 'contact_delete' contact.pk %}">
-						<span class="fa fa-trash"></span>
-					</button></td>
+					<td>					
+					<button type="button" class="contact-read bs-modal btn btn-sm btn-primary" data-form-url="{% url 'contact_read' contact.pk %}">
+						<i class="bi-eye"></i>
+					</button>
+					<button type="button" class="contact-update bs-modal btn btn-sm btn-primary" data-form-url="{% url 'contact_update' contact.pk %}">
+						<i class="bi-pencil"></i>
+					</button>
+					<button type="button" class="contact-delete bs-modal btn btn-sm btn-danger" data-form-url="{% url 'contact_delete' contact.pk %}">
+						<i class="bi-trash"></i>
+					</button>
+					</td>
 				</tr>
 				{% endfor %}
 			</tbody>
