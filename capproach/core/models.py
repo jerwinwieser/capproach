@@ -17,18 +17,11 @@ class Contact(models.Model):
 	duration = models.CharField(max_length=30, choices=DURATION_CHOICES, default='Medium', blank=True, null=True)
 	interaction = models.IntegerField(blank=True, null=True, choices=INTERACTION_CHOICES, default=7)
 	looks = models.IntegerField(blank=True, null=True, choices=LOOKS_CHOICES, default=7)
-
-	# close = models.BooleanField(choices=BOOLEAN_CHOICES, default=1, blank=True)
-	# reply = models.BooleanField(choices=BOOLEAN_CHOICES, default=0, blank=True)
-	# date = models.BooleanField(choices=BOOLEAN_CHOICES, default=0, blank=True)
-	# lay = models.BooleanField(choices=BOOLEAN_CHOICES, default=0, blank=True)
 	close = models.CharField(max_length=30, choices=BOOLEAN_CHOICES, default='yes', blank=True)
 	reply = models.CharField(max_length=30, choices=BOOLEAN_CHOICES, default='no', blank=True)
 	date = models.CharField(max_length=30, choices=BOOLEAN_CHOICES, default='no', blank=True)
 	lay = models.CharField(max_length=30, choices=BOOLEAN_CHOICES, default='no', blank=True)
-
 	comments = models.TextField(blank = True, max_length=300)
-
 	created_at = models.DateTimeField(editable=False, default=timezone.now)
 	updated_at = models.DateTimeField(editable=False, default=timezone.now)
 	created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, editable=False)
