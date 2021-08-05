@@ -1,4 +1,5 @@
-# python3 manage.py shell < core/data/demodata_model.py 
+# python3 manage.py shell < core/data/demodata_model.py
+# heroku run python3 capproach/manage.py shell < core/data/demodata_model.py --app capproach
 from django.contrib.auth.models import User
 from core.models import Contact
 import pandas
