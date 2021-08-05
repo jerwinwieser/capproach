@@ -1,5 +1,5 @@
 # python3 manage.py shell < core/data/demodata_model.py
-# heroku run python3 capproach/manage.py shell < core/data/demodata_model.py --app capproach
+# heroku run python capproach/manage.py shell < core/data/demodata_model.py --app capproach
 from django.contrib.auth.models import User
 from core.models import Contact
 import pandas
@@ -8,7 +8,7 @@ instance = Contact.objects.filter(created_by_id=userid)
 instance.delete()
 print('*** deleted records from database matching to user ' + str(userid) + ' ***')
 Contact.objects.filter(created_by_id=userid)
-df = pandas.read_csv('core/data/demodata.csv')
+df = pandas.read_csv('capproach/core/data/demodata.csv')
 for index, row in df.iterrows():
 	p = Contact(date_approach = df.loc[index, 'date_approach'],
 		time_approach = df.loc[index, 'time_approach'],
