@@ -2,12 +2,68 @@
 
 {% block content %}
 
+<main>
+
+	<h2 class="display-6 text-center mb-4">Performance Overall</h2>
+
+	<div class="table-responsive">
+		<table class="table text-center">
+			<thead>
+
+				<tr>
+					<th style="width: 40%";></th>
+					<th>Total (n approaches={{performance.approach_count_total}})</th>
+					<th>Last Month (n approaches={{performance.approach_count_month}})</th>
+				</tr>
+
+			</thead>
+			<tbody>
+
+				<tr>
+					<td><strong>Closes/Approaches</strong></td>
+					<td>{% widthratio performance.close_count_total performance.approach_count_total 100 %}%</td>
+					<td>{% widthratio performance.close_count_total performance.approach_count_total 100 %}%</td>
+				</tr>
+
+				<tr>
+					<td><strong>Dates/Closes</strong></td>
+					<td>{% widthratio performance.date_count_total performance.close_count_total 100 %}%</td>
+					<td>{% widthratio performance.date_count_total performance.close_count_total 100 %}%</td>
+				</tr>
+
+				<tr>
+					<td><strong>Lays/Dates</strong></td>
+					<td>{% widthratio performance.lay_count_total performance.date_count_total 100 %}%</td>
+					<td>{% widthratio performance.lay_count_total performance.date_count_total 100 %}%</td>
+				</tr>
+
+				<tr>
+					<td><strong>Dates/Approaches</strong></td>
+					<td>{% widthratio performance.date_count_total performance.approach_count_total 100 %}%</td>
+					<td>{% widthratio performance.date_count_total performance.approach_count_total 100 %}%</td>
+				</tr>
+
+				<tr>
+					<td><strong>Lays/Closes</strong></td>
+					<td>{% widthratio performance.lay_count_total performance.close_count_total 100 %}%</td>
+					<td>{% widthratio performance.lay_count_total performance.close_count_total 100 %}%</td>
+				</tr>
+
+				<tr>
+					<td><strong>Lays/Approaches</strong></td>
+					<td>{% widthratio performance.lay_count_total performance.approach_count_total 100 %}%</td>
+					<td>{% widthratio performance.lay_count_total performance.approach_count_total 100 %}%</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+	</div>
+</main>
 
 <main>
 
 	<h2 class="display-6 text-center mb-4">Summary per Week</h2>
-
-	<h3>{{ contact_demo_text }}</h3>
 
 	<div class="table-responsive">
 		<table class="table text-center">
@@ -78,6 +134,7 @@
 		</table>
 	</div>
 </main>
+
 
 {% endblock %}
 

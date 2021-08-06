@@ -22,21 +22,21 @@
 			<tbody>
 				{% for contact in contact_list %}
 				
-					{% if contact.close == 0 and contact.reply == 0 and contact.date == 0 and contact.lay == 0 %}
-					<tr class="table-active">
-					{% elif contact.close == 1 and contact.reply == 0 and contact.date == 0 and contact.lay == 0 %}
-					<tr>
-					{% elif contact.close == 1 and contact.reply == 1 and contact.date == 0 and contact.lay == 0 %}
-					<tr class="table-primary">
-					{% elif contact.close == 1 and contact.reply == 1 and contact.date == 1 and contact.lay == 0 %}
-					<tr class="table-warning">
-					{% elif contact.close == 1 and contact.reply == 1 and contact.date == 1 and contact.lay == 1 %}
-					<tr class="table-success">
+					{% if contact.close == 'no' and contact.reply == 'no' and contact.date == 'no' and contact.lay == 'no' %}
+					<tr class="table-inactive">
+					{% elif contact.close == 'yes' and contact.reply == 'no' and contact.date == 'no' and contact.lay == 'no' %}
+					<tr class="table-close">
+					{% elif contact.close == 'yes' and contact.reply == 'yes' and contact.date == 'no' and contact.lay == 'no' %}
+					<tr class="table-reply">
+					{% elif contact.close == 'yes' and contact.reply == 'yes' and contact.date == 'yes' and contact.lay == 'no' %}
+					<tr class="table-date">
+					{% elif contact.close == 'yes' and contact.reply == 'yes' and contact.date == 'yes' and contact.lay == 'yes' %}
+					<tr class="table-lay">
 					{% else %}
 					<tr>
 					{% endif %}
 
-					<th class="text-center" scope="row">{{ forloop.counter }}</th>
+					<td class="text-center" scope="row">{{ forloop.counter }}</td>
 					<td>{{ contact.date_approach }}</td>
 					<td>{{ contact.name }}</td>
 					<td>{{ contact.age }}</td>

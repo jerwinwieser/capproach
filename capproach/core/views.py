@@ -28,20 +28,42 @@ class StatisticsListView(ListView):
 			userid = User.objects.filter(groups__name__in=['demo']).values_list('id', flat=True).first()
 			context['contact_demo_text'] = 'This is a DEMO page - signup or login to start logging your own approaches'
 
-		context['summary_week'] = Contact.objects \
+		context['performance'] = Contact.objects \
+		.filter(created_by_id=userid) \
+		.annotate(approach_count=Count('close')) \
+		.annotate(close_count=Sum(Case(When(close='yes', then=1),
+	        default=Value(0),
+	        output_field=IntegerField()
+	    ))) \
+		.annotate(date_count=Sum(Case(When(date='yes', then=1),
+	        default=Value(0),
+	        output_field=IntegerField()
+	    ))) \
+		.annotate(lay_count=Sum(Case(When(lay='yes', then=1),
+	        default=Value(0),
+	        output_field=IntegerField()
+	    ))) \
+	    .aggregate(
+	    	close_count_total=Sum('close_count'),
+	    	approach_count_total=Sum('approach_count'),
+	    	date_count_total=Sum('date_count'),
+	    	lay_count_total=Sum('lay_count')
+	    )
+
+		context['summary_week']  = Contact.objects \
 		.filter(created_by_id=userid) \
     	.annotate(week_number=ExtractWeek('date_approach')) \
 		.values('week_number') \
 		.annotate(approach_count=Count('close')) \
-		.annotate(close_count=Sum(Case(When(close=True, then=1),
+		.annotate(close_count=Sum(Case(When(close='yes', then=1),
 	        default=Value(0),
 	        output_field=IntegerField()
 	    ))) \
-		.annotate(date_count=Sum(Case(When(date=True, then=1),
+		.annotate(date_count=Sum(Case(When(date='yes', then=1),
 	        default=Value(0),
 	        output_field=IntegerField()
 	    ))) \
-		.annotate(lay_count=Sum(Case(When(lay=True, then=1),
+		.annotate(lay_count=Sum(Case(When(lay='yes', then=1),
 	        default=Value(0),
 	        output_field=IntegerField()
 	    ))) \
@@ -51,15 +73,15 @@ class StatisticsListView(ListView):
 		.filter(created_by_id=userid) \
 		.values('date_approach') \
 		.annotate(approach_count=Count('close')) \
-		.annotate(close_count=Sum(Case(When(close=True, then=1),
+		.annotate(close_count=Sum(Case(When(close='yes', then=1),
 	        default=Value(0),
 	        output_field=IntegerField()
 	    ))) \
-		.annotate(date_count=Sum(Case(When(date=True, then=1),
+		.annotate(date_count=Sum(Case(When(date='yes', then=1),
 	        default=Value(0),
 	        output_field=IntegerField()
 	    ))) \
-		.annotate(lay_count=Sum(Case(When(lay=True, then=1),
+		.annotate(lay_count=Sum(Case(When(lay='yes', then=1),
 	        default=Value(0),
 	        output_field=IntegerField()
 	    ))) \
