@@ -8,8 +8,17 @@
 	
 	<div class="table-responsive">
 		<table class="table text-center">
+
+			<caption>
+				<i class="dot-close"></i> close
+				<i class="dot-reply"></i> reply
+				<i class="dot-date"></i> date
+				<i class="dot-lay"></i> lay
+			</caption>
+
 			<thead>
 				<tr>
+					<th style="border-bottom:1px solid #fff;"></th>
 					<th>#</th>
 					<th>Date Approach</th>
 					<th>Name</th>
@@ -20,19 +29,25 @@
 			</thead>
 			<tbody>
 				{% for contact in contact_list %}
-				
+
 					{% if contact.close == 'no' and contact.reply == 'no' and contact.date == 'no' and contact.lay == 'no' %}
 					<tr class="table-inactive">
+						<td style="border-bottom:1px solid #fff;"><i class="dot"></i></td>
 					{% elif contact.close == 'yes' and contact.reply == 'no' and contact.date == 'no' and contact.lay == 'no' %}
 					<tr class="table-close">
+						<td style="border-bottom:1px solid #fff;"><i class="dot-close"></i></td>
 					{% elif contact.close == 'yes' and contact.reply == 'yes' and contact.date == 'no' and contact.lay == 'no' %}
 					<tr class="table-reply">
+						<td style="border-bottom:1px solid #fff;"><i class="dot-reply"></i></td>
 					{% elif contact.close == 'yes' and contact.reply == 'yes' and contact.date == 'yes' and contact.lay == 'no' %}
 					<tr class="table-date">
+						<td style="border-bottom:1px solid #fff;"><i class="dot-date"></i></td>
 					{% elif contact.close == 'yes' and contact.reply == 'yes' and contact.date == 'yes' and contact.lay == 'yes' %}
 					<tr class="table-lay">
+						<td style="border-bottom:1px solid #fff;"><i class="dot-lay"></i></td>
 					{% else %}
 					<tr>
+						<td style="border-bottom:1px solid #fff;"><i class="dot"></i></td>
 					{% endif %}
 
 						<th>{{ forloop.counter }}</th>
@@ -57,6 +72,9 @@
 
 		</table>
 	</div>
+
+
+
 </main>
 
 {% endblock %}
