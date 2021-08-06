@@ -14,6 +14,9 @@ from django.utils.decorators import method_decorator
 from bootstrap_modal_forms.generic import BSModalReadView, BSModalCreateView, BSModalDeleteView, BSModalFormView, BSModalUpdateView
 from django.contrib.auth.models import User
 
+class modelFieldsInfo(TemplateView):
+	template_name = 'core/model_fields_info.html'
+
 # @method_decorator(login_required, name='dispatch')
 class StatisticsListView(ListView):
 	template_name = 'core/statistics_list.html'

@@ -12,6 +12,8 @@
 
     <div class="modal-body">
 
+        <a href="{% url 'model_fields_info' %}" target="_blank">Check definition of every field</a>
+
         <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
             {% for error in form.non_field_errors %}
             {{ error }}

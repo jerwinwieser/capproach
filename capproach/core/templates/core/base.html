@@ -105,10 +105,10 @@
 		{% if user.is_authenticated %}
 		{% else %}
 
-		<h4 class="display-12 text-center mb-4 text-danger">
+		<h5 class="display-12 text-center mb-4 text-danger">
 			*** These are DEMO data *** <br>
 			*** <a href="{% url 'account_signup' %}">Signup</a> or <a href="{% url 'account_login' %}">Login</a> to start logging your own approaches. ***
-		</h4>
+		</h5>
 
 		{% endif %}
 
