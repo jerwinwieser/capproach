@@ -114,7 +114,7 @@ class ContactListView(ListView):
 
 		context['contact_list'] = Contact.objects \
 		.filter(created_by_id=userid) \
-		.order_by('-date_approach', '-time_approach')
+		.order_by('-date_approach')
 
 		return context
 
