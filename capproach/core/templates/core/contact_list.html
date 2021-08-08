@@ -7,6 +7,9 @@
 	<h2 class="display-6 text-center mb-4">Approaches</h2>
 	
 	<div class="table-responsive">
+
+		{% if contact_list.count > 0 %}
+
 		<table class="table text-center">
 
 			<caption style="text-align: center">
@@ -27,7 +30,9 @@
 					<th>Read / Update / Delete</th>
 				</tr>
 			</thead>
+
 			<tbody>
+
 				{% for contact in contact_list %}
 
 					{% if contact.close == 'no' and contact.reply == 'no' and contact.date == 'no' and contact.lay == 'no' %}
@@ -68,9 +73,17 @@
 						</td>
 					</tr>
 				{% endfor %}
+
 			</tbody>
 
 		</table>
+
+		{% else %}
+
+		<h6 class="text-muted ml-auto m-0 text-center">No data - start adding approaches by clicking the "+Add Approach"</h6>
+
+		{% endif %}
+
 	</div>
 
 

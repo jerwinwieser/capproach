@@ -7,6 +7,11 @@
 	<h2 class="display-6 text-center mb-4">Statistics</h2>
 
 	<div class="table-responsive">
+
+
+		{% if approach_count_total.count > 0 %}
+
+
 		<table class="table text-center">
 			<thead>
 
@@ -51,6 +56,15 @@
 			</tbody>
 
 		</table>
+
+
+		{% else %}
+
+		<h6 class="text-muted ml-auto m-0 text-center">No data to show</h6>
+
+		{% endif %}
+
+
 	</div>
 </main>
 
@@ -59,6 +73,12 @@
 	<h2 class="display-6 text-center mb-4">Summary per Week</h2>
 
 	<div class="table-responsive">
+
+
+
+		{% if summary_week.count > 0 %}
+
+
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -86,6 +106,16 @@
 			</tbody>
 
 		</table>
+
+
+
+		{% else %}
+
+		<h6 class="text-muted ml-auto m-0 text-center">No data to show</h6>
+
+		{% endif %}
+
+
 	</div>
 </main>
 
@@ -96,6 +126,12 @@
 	<h2 class="display-6 text-center mb-4">Summary per Day</h2>
 
 	<div class="table-responsive">
+
+
+
+		{% if summary_day.count > 0 %}
+
+
 		<table class="table text-center">
 			<thead>
 
@@ -125,6 +161,16 @@
 			</tbody>
 
 		</table>
+
+
+
+		{% else %}
+
+		<h6 class="text-muted ml-auto m-0 text-center">No data to show</h6>
+
+		{% endif %}
+
+
 	</div>
 </main>
 
