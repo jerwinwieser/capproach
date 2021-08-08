@@ -7,7 +7,7 @@ from django.db.models import Avg, Count, Min, Sum, IntegerField, Case, When, Val
 from django.db.models.functions import ExtractWeek, ExtractYear, ExtractMonth
 from django.urls import reverse, reverse_lazy
 from core.models import Contact
-from core.forms import ContactForm
+from core.forms import ContactForm, ContactFormExtra
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -119,7 +119,7 @@ class ContacReadView(BSModalReadView):
 # @method_decorator(login_required, name='dispatch')
 class ContactCreateView(BSModalCreateView):
 	template_name = 'core/contact_create.html'
-	form_class = ContactForm
+	form_class = ContactFormExtra
 	model = Contact
 	def form_valid(self, form):
 		form.instance.created_by = self.request.user
@@ -132,7 +132,7 @@ class ContactCreateView(BSModalCreateView):
 class ContactUpdateView(BSModalUpdateView):
 	template_name = 'core/contact_update.html'
 	model = Contact
-	form_class = ContactForm
+	form_class = ContactFormExtra
 	def get_success_url(self):
 		return reverse('contact_list')
 
