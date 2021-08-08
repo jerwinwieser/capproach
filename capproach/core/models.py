@@ -9,8 +9,11 @@ class Contact(models.Model):
 	INTERACTION_CHOICES = [(i,i) for i in range(1, 11)]
 	LOOKS_CHOICES = [(i,i) for i in range(1, 11)]
 	BOOLEAN_CHOICES = [('yes', 'Yes'),('no', 'No')]
+	GROUP_SIZE_CHOICES = [(i,i) for i in range(1, 10)]
 	date_approach = models.DateField(default=timezone.now)
 	time_approach = models.TimeField(default=timezone.now)
+	location = models.CharField(max_length=30, blank=False)
+	group_size = models.IntegerField(blank=True, null=True, choices=GROUP_SIZE_CHOICES, default=1)
 	name = models.CharField(max_length=30, blank=False)
 	age = models.IntegerField(blank=True, null=True, choices=AGE_CHOICES, default=22)
 	nationality = models.CharField(max_length=30, blank=True, null=True)
