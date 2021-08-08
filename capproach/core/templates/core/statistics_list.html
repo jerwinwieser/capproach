@@ -13,7 +13,6 @@
 				<tr>
 					<th style="width: 40%";></th>
 					<th>Total (n approaches={{performance.approach_count_total}})</th>
-					<th>Last Month (n approaches={{performance.approach_count_total}})</th>
 				</tr>
 
 			</thead>
@@ -22,36 +21,30 @@
 				<tr>
 					<td><strong>Closes/Approaches</strong></td>
 					<td>{% widthratio performance.close_count_total performance.approach_count_total 100 %}%</td>
-					<td>{% widthratio performance.close_count_total performance.approach_count_total 100 %}%</td>
 				</tr>
 
 				<tr>
 					<td><strong>Dates/Closes</strong></td>
-					<td>{% widthratio performance.date_count_total performance.close_count_total 100 %}%</td>
 					<td>{% widthratio performance.date_count_total performance.close_count_total 100 %}%</td>
 				</tr>
 
 				<tr>
 					<td><strong>Lays/Dates</strong></td>
 					<td>{% widthratio performance.lay_count_total performance.date_count_total 100 %}%</td>
-					<td>{% widthratio performance.lay_count_total performance.date_count_total 100 %}%</td>
 				</tr>
 
 				<tr>
 					<td><strong>Dates/Approaches</strong></td>
-					<td>{% widthratio performance.date_count_total performance.approach_count_total 100 %}%</td>
 					<td>{% widthratio performance.date_count_total performance.approach_count_total 100 %}%</td>
 				</tr>
 
 				<tr>
 					<td><strong>Lays/Closes</strong></td>
 					<td>{% widthratio performance.lay_count_total performance.close_count_total 100 %}%</td>
-					<td>{% widthratio performance.lay_count_total performance.close_count_total 100 %}%</td>
 				</tr>
 
 				<tr>
 					<td><strong>Lays/Approaches</strong></td>
-					<td>{% widthratio performance.lay_count_total performance.approach_count_total 100 %}%</td>
 					<td>{% widthratio performance.lay_count_total performance.approach_count_total 100 %}%</td>
 				</tr>
 
